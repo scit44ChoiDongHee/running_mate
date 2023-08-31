@@ -80,3 +80,7 @@ task copyReactBuildFiles(type: Copy) {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+    zip64 true
+}
