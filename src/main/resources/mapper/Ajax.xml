@@ -1,0 +1,10 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.ajax.dao.AjaxDAO">	
+	
+	<insert id="insert" parameterType="Member">
+		insert into member VALUES(#{id},#{password},#{name})
+	</insert>
+</mapper>

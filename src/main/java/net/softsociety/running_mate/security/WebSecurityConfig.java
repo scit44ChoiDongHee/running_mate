@@ -1,4 +1,4 @@
-//package net.softsociety.running_mate.security;
+package net.softsociety.running_mate.security;
 //
 //import javax.sql.DataSource;
 //
