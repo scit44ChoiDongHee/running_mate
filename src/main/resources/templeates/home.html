@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>home</title>
+</head>
+<body>
+	<h2>[ spring 5]</h2>
+	
+	<p sec:authorize="isAuthenticated()">
+		<span th:text="${#authentication.name}"></span>님 로그인중
+	</p>
+	
+	<p><a th:href="@{/join}">회원가입</a></p>
+	<p><a th:href="@{/loginForm}">로그인</a></p>
+	<p><a th:href="@{/logout}">로그아웃</a></p>
+	<p><a th:href="@{/updateForm}">개인정보수정</a></p>
+	<p><a th:href="@{/board/board}">게시판</a></p>
+	
+	<p><a th:href="@{/security}">Thyeleaf(Security)</a></p>
+	<p><a th:href="@{/admin}">관리자 페이지</a></p>
+	<p><a th:href="@{/error1}">에러처리</a></p>
+</body>
+</html>
