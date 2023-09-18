@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.running_mate.blog.service.BlogService;
@@ -14,14 +15,14 @@ import net.softsociety.running_mate.vo.BlogVo;
 
 @Slf4j
 @Controller
-@RequestMapping("/blog")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174"}, allowCredentials = "true")
+@RequestMapping("/api")
 public class BlogController {
 	
 	@Autowired
 	BlogService service;
 	
-	@PostMapping("/blogWrite")
+	@CrossOrigin(origins = {"http://localhost:5173"})
+	@RequestMapping(method = RequestMethod.OPTIONS, value = "/blogWrite")
 	public ResponseEntity<?> blogWrite(@RequestBody BlogVo data) {
 		
 //		System.out.println(data.toString());
