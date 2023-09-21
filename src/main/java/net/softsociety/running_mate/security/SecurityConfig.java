@@ -70,6 +70,7 @@ public class SecurityConfig {
                 .antMatchers("/api/running-mate/user/get").permitAll()
                 .antMatchers("/api/running-mate/user/login").permitAll()
                 .antMatchers("/api/running-mate/user/join").permitAll()
+                .antMatchers("/api/**").permitAll()
             .and()
             .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
