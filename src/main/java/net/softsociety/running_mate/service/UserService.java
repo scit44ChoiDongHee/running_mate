@@ -1,12 +1,18 @@
 package net.softsociety.running_mate.service;
 
-import net.softsociety.running_mate.domain.UserInfo;
+import net.softsociety.running_mate.dto.LoginDTO;
+import net.softsociety.running_mate.dto.TokenDTO;
+import net.softsociety.running_mate.dto.UserDTO;
 
 public interface UserService 
 {
-
-	int save(int testInput);
-
-	int userSingUp(UserInfo userInfo);
-
+	boolean join(UserDTO userDto);
+	
+	String login(LoginDTO loginDto);
+	
+	boolean haveUser(String user_id);
+	
+	UserDTO findUserId(String user_id);
+	
+	TokenDTO tokenGenerator(String user_id);
 }

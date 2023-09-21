@@ -1,15 +1,21 @@
-package net.softsociety.running_mate.domain;
+package net.softsociety.running_mate.vo;
 
 import java.sql.Date;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfo {
+public class UserVo {
+	public UserVo(String subject, String string, Collection<? extends GrantedAuthority> authorities) {}
     private String user_id;
     private String user_pw;
     private String user_name;
