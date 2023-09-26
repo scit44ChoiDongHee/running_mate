@@ -82,7 +82,7 @@ const SignUpForm = (props: SignUpFormProps) => {
                     <Form>
                         <FormContainer>
                             <FormItem
-                                label="User Name"
+                                label="아이디"
                                 invalid={errors.userName && touched.userName}
                                 errorMessage={errors.userName}
                             >
@@ -90,12 +90,12 @@ const SignUpForm = (props: SignUpFormProps) => {
                                     type="text"
                                     autoComplete="off"
                                     name="userName"
-                                    placeholder="User Name"
+                                    placeholder="아이디 입력"
                                     component={Input}
                                 />
                             </FormItem>
                             <FormItem
-                                label="Email"
+                                label="이메일"
                                 invalid={errors.email && touched.email}
                                 errorMessage={errors.email}
                             >
@@ -103,24 +103,24 @@ const SignUpForm = (props: SignUpFormProps) => {
                                     type="email"
                                     autoComplete="off"
                                     name="email"
-                                    placeholder="Email"
+                                    placeholder="이메일 입력"
                                     component={Input}
                                 />
                             </FormItem>
                             <FormItem
-                                label="Password"
+                                label="비밀번호"
                                 invalid={errors.password && touched.password}
                                 errorMessage={errors.password}
                             >
                                 <Field
                                     autoComplete="off"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder="비밀번호"
                                     component={PasswordInput}
                                 />
                             </FormItem>
                             <FormItem
-                                label="Confirm Password"
+                                label="비밀번호 확인"
                                 invalid={
                                     errors.confirmPassword &&
                                     touched.confirmPassword
@@ -130,7 +130,7 @@ const SignUpForm = (props: SignUpFormProps) => {
                                 <Field
                                     autoComplete="off"
                                     name="confirmPassword"
-                                    placeholder="Confirm Password"
+                                    placeholder="비밀번호 확인"
                                     component={PasswordInput}
                                 />
                             </FormItem>
@@ -145,8 +145,8 @@ const SignUpForm = (props: SignUpFormProps) => {
                                     : 'Sign Up'}
                             </Button>
                             <div className="mt-4 text-center">
-                                <span>Already have an account? </span>
-                                <ActionLink to={signInUrl}>Sign in</ActionLink>
+                                <span>계정을 이미 보유하고 계신가요?</span>
+                                <ActionLink to={signInUrl}>로그인</ActionLink>
                             </div>
                         </FormContainer>
                     </Form>

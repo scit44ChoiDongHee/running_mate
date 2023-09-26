@@ -4,8 +4,8 @@ const SignIn = () => {
     return (
         <>
             <div className="mb-8">
-                <h3 className="mb-1">Welcome back!</h3>
-                <p>Please enter your credentials to sign in!</p>
+                <h3 className="mb-1">환영합니다!</h3>
+                <p>아이디와 비밀번호를 입력하세요!</p>
             </div>
             <SignInForm disableSubmit={false} />
         </>

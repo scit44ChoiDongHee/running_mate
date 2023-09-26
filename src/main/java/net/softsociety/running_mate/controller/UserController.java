@@ -42,7 +42,7 @@ public class UserController {
 	@Autowired
 	TokenProvider tokenProvider;
     
-	@PostMapping("/join")
+	@PostMapping("/sign-in")
 	public ResponseEntity<?> join(@RequestBody UserDTO userDto) {
 		ResponseEntity<?> responseEntity = null;
 		
@@ -67,7 +67,7 @@ public class UserController {
 		return responseEntity;
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/sign-up")
 	public ResponseEntity<?> login(@RequestBody LoginDTO loginDto) {
 		ResponseEntity<?> responseEntity = null;
 		
@@ -93,7 +93,7 @@ public class UserController {
 		return responseEntity;
 	}
 	
-	@PostMapping("/logout")
+	@PostMapping("/sign-out")
 	public ResponseEntity<?> logout(
 			@CookieValue(value = HttpHeaders.SET_COOKIE) Cookie refreshCookie
 			) {
