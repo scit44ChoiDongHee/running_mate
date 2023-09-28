@@ -67,7 +67,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-                .antMatchers("/api/running-mate/user/**").permitAll()
+                .antMatchers("/api/user/**").permitAll()
                 .antMatchers("/api/**").permitAll()
             .and()
             .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)

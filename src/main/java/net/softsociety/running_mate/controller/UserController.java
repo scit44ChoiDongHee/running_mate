@@ -32,7 +32,7 @@ import net.softsociety.running_mate.service.UserService;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/running-mate/user")
+@RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired

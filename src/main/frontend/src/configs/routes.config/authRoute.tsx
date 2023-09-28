@@ -4,25 +4,25 @@ import type { Routes } from '@/@types/routes'
 const authRoute: Routes = [
     {
         key: 'signIn',
-        path: `/sign-in`,
+        path: `/user/sign-in`,
         component: lazy(() => import('@/views/auth/SignIn')),
         authority: [],
     },
     {
         key: 'signUp',
-        path: `/sign-up`,
+        path: `/user/sign-up`,
         component: lazy(() => import('@/views/auth/SignUp')),
         authority: [],
     },
     {
         key: 'forgotPassword',
-        path: `/forgot-password`,
+        path: `/user/forgot-password`,
         component: lazy(() => import('@/views/auth/ForgotPassword')),
         authority: [],
     },
     {
         key: 'resetPassword',
-        path: `/reset-password`,
+        path: `/user/reset-password`,
         component: lazy(() => import('@/views/auth/ResetPassword')),
         authority: [],
     },
