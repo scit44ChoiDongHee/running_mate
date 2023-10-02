@@ -1,10 +1,10 @@
 import { lazy } from 'react'
 import authRoute from './authRoute'
 import type { Routes } from '@/@types/routes'
-
 export const publicRoutes: Routes = [...authRoute]
 
-export const protectedRoutes = [
+
+export let protectedRoutes = [
     {
         key: 'home',
         path: '/home',
@@ -16,6 +16,18 @@ export const protectedRoutes = [
         key: 'singleMenuItem',
         path: '/single-menu-view',
         component: lazy(() => import('@/views/demo/SingleMenuView')),
+        authority: [],
+    },
+    {
+        key: 'goal',
+        path: '/goal',
+        component: lazy(() => import('@/views/demo/Goal')),
+        authority: [],
+    },
+    {
+        key: 'daily',
+        path: '/daily',
+        component: lazy(() => import('@/views/demo/daily')),
         authority: [],
     },
     {
@@ -55,3 +67,10 @@ export const protectedRoutes = [
         authority: [],
     },
 ]
+export function getProtectedRoutes() {
+    return protectedRoutes;
+  }
+  
+  export function updateProtectedRoutes(newRoutes) {
+    protectedRoutes = newRoutes;
+  }

@@ -1,0 +1,126 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.softsociety.running_mate.dao.UserDAO">
+
+
+	<!-- 대목표 저장 -->
+	<insert id="bigGoalInsert" parameterType="GoalDTO">
+		insert into
+		big_goal 
+			(bigGoal_number, bigGoal_name, bigGoal_startDate, bigGoal_endDate, user_id)			
+		values
+			(big_goal_seq.NEXTVAL, #{bigGoal_name}, #{bigGoal_startDate}, #{bigGoal_endDate}, #{user_id})
+	</insert>
+	
+	<!-- 대목표 불어오기 -->
+	<select id="getBigGoalList" resultType="Goal" parameterType="String">
+ 	 SELECT * FROM 
+ 	 	big_goal
+ 	 WHERE 
+ 	 	user_id = #{userId}
+ 	 ORDER BY 
+ 	 	bigGoal_number <!-- bigGoal_number를 작은 수부터 정렬 -->
+	</select>
+	
+	<!-- 대목표 갯수 불러오기 -->	
+<select id="getBigGoalCount" parameterType="String" resultType="BigGoalCount">
+    SELECT
+        (SELECT COUNT(*) FROM big_goal WHERE bigGoal_state = 'ongoing' AND user_id = #{userId}) AS ongoing_count,
+        (SELECT COUNT(*) FROM big_goal WHERE bigGoal_state = 'completed' AND user_id = #{userId}) AS completed_count,
+        (SELECT COUNT(*) FROM big_goal WHERE bigGoal_endDate &lt; SYSDATE AND user_id = #{userId}) AS overdue_count
+    FROM dual
+</select>
+	
+	<!-- 소목표 불러오기 -->	
+	<select id="getSmallGoalList" parameterType="SmallGoalDTO" resultType="SmallGoal">
+		 SELECT * FROM 
+ 	 		small_goal
+ 	 	WHERE 
+ 	 		bigGoal_number = #{bigGoal_number}
+ 	 	ORDER BY 
+ 	 		smallGoal_number <!-- bigGoal_number를 작은 수부터 정렬 -->
+	</select>
+	
+	<!-- 소목표 저장 -->	
+	<insert id="smallGoalInsert" parameterType="SmallGoal">
+   	 	INSERT INTO small_goal
+   		 	(smallGoal_number, smallGoal_name, smallGoal_startDate, smallGoal_endDate, bigGoal_number)
+    	VALUES
+    		(small_goal_seq.NEXTVAL, #{smallGoal_name}, #{smallGoal_startDate}, #{smallGoal_endDate}, #{bigGoal_number})
+	</insert>
+	
+	
+	<!-- 소목표 갯수 불러오기 -->
+	<select id="getSmallGoalCount" parameterType="int" resultType="SmallGoalCount">
+	    SELECT
+	        (SELECT COUNT(*) FROM small_goal WHERE smallGoal_check = 'ongoing' AND bigGoal_number = #{bigGoal_number}) AS ongoing_count,
+	        (SELECT COUNT(*) FROM small_goal WHERE smallGoal_check = 'complete' AND bigGoal_number = #{bigGoal_number}) AS completed_count,
+	        (SELECT COUNT(*) FROM small_goal WHERE smallGoal_startDate &gt; SYSDATE AND bigGoal_number = #{bigGoal_number}) AS UpComingGoal_count
+	    FROM dual
+	</select>
+	
+	<!-- 대목표 디데이 불러오기 -->
+	<select id="GetDday" parameterType="int" resultType="int">
+	 SELECT
+ 		 bigGoal_endDate - SYSDATE AS Dday
+	FROM
+  		big_goal
+  	where bigGoal_number = #{bigGoal_number}
+	</select>
+	
+	<!-- 소목표 디데이 불러오기 -->
+	<select id="GetSmallDday" parameterType="int" resultType="int">
+	 SELECT
+ 		 smallGoal_endDate - SYSDATE AS Dday
+	FROM
+  		small_goal
+  	where 
+  		smallGoal_number = #{smallGoal_number}
+	</select>
+	
+	<!-- 소목표 삭제하기 -->
+	<delete id="deleteSmallGoal" parameterType="Long">
+		DELETE FROM small_goal
+		WHERE smallGoal_number = #{smallGoalId}
+	</delete>
+	
+	
+	<!-- 대목표 삭제하기 -->
+	<delete id="deleteBigGoal" parameterType="Long">
+        DELETE FROM big_goal WHERE bigGoal_number = #{bigGoalId}
+	</delete>
+	
+	<!-- Goal 테이블에서 bigGoal_number에 맞는 행을 업데이트하는 쿼리 -->
+ <update id="UpDateBigGoal" parameterType="goalDTO">
+    UPDATE big_goal
+    <set>
+        <!-- bigGoal_name 필드 업데이트 -->
+        <if test="bigGoal_name != null">bigGoal_name = #{bigGoal_name},</if>
+        
+        <!-- bigGoal_startDate 필드 업데이트 -->
+        <if test="bigGoal_startDate != null">bigGoal_startDate = #{bigGoal_startDate},</if>
+        
+        <!-- bigGoal_endDate 필드 업데이트 -->
+        <if test="bigGoal_endDate != null">bigGoal_endDate = #{bigGoal_endDate},</if>
+        
+        <!-- 다른 필드 업데이트 조건 추가 -->
+    </set>
+    WHERE bigGoal_number = #{bigGoal_number}
+</update>
+
+	
+	<update id="UpDateSmallGoal" parameterType="SmallGoal">
+    	UPDATE small_goal
+    <set>
+        <!-- 업데이트할 필드와 값을 설정합니다. -->
+        <if test="smallGoal_name != null">smallGoal_name = #{smallGoal_name},</if>
+        <if test="smallGoal_startDate != null">smallGoal_startDate = #{smallGoal_startDate},</if>
+        <if test="smallGoal_endDate != null">smallGoal_endDate = #{smallGoal_endDate},</if>
+    </set>
+    WHERE smallGoal_number = #{smallGoal_number}
+</update>
+	
+	
+</mapper>
