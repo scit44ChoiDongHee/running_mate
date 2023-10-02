@@ -16,14 +16,12 @@ export default defineConfig({
     // 프록시 설정 시작
     server: {
         proxy: {
-            '/api': 'http://localhost:8888',
-            // {
-            //     target: 'http://localhost:8888',
-            //     changeOrigin: true,
-            //     rewrite: (path) => path.replace(/^\/api/, ''),
-            //     // secure: false,
-            //     // ws: true
-            // },
+            '/api': {
+                target: 'http://localhost:8888',
+                changeOrigin: true,
+                secure: false,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
         },
     }, // 프록시 설정 끝
     assetsInclude: ['**/*.md'],
