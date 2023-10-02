@@ -38,19 +38,6 @@ public class TestController {
 	GoalService service;
 	
 	
-	    @GetMapping("/")
-	    public String index() {
-	        return "/build/index.html";
-	    }
-	
-	
-	
-	@GetMapping("/api")
-	public String test() {
-		log.debug("서버 진입 확인");
-		return "목표 확인";
-	}
-	
 	
 	// 대목표 저장하기
 	@PostMapping("/api/goal")
