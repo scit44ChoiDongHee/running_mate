@@ -1,0 +1,10 @@
+diff a/build.gradle b/build.gradle	(rejected hunks)
+@@ -80,3 +80,7 @@
+ tasks.named('test') {
+ 	useJUnitPlatform()
+ }
++
++jar {
++    zip64 true
++}
+\ No newline at end of file
