@@ -6,7 +6,7 @@
 
 <!-- 일정 등록 -->
  <insert id="addTask" parameterType="java.util.Map">
- 	INSERT INTO events 
+ 	INSERT INTO task_vo 
  		(task_number, task_title, task_startDate, task_endDate, user_id)
  	VALUES
     	(task_seq.NEXTVAL, #{task_title}, #{task_startDate}, #{task_endDate}, #{user_id})

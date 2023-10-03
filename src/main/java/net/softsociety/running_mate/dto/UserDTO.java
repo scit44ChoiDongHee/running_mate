@@ -27,10 +27,6 @@ public class UserDTO implements UserDetails, Serializable {
     private String user_pw; // UserVO의 user_pw와 동일
     private String user_name; // UserVO의 user_name과 동일
     private String user_email; // UserVO의 user_email과 동일
-    private Date user_birthday; // UserVO의 user_birthday와 동일
-    private String user_phone; // UserVO의 user_phone과 동일
-    private String user_nickname; // UserVO의 user_nickname과 동일
-    private String user_photo; // UserVO의 user_photo와 동일
 
     // 이하 코드는 security 를 위한 용도
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

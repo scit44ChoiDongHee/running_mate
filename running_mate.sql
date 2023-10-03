@@ -3,11 +3,7 @@ create table user_vo (
     user_id         varchar2(100)    primary key,
     user_pw         varchar2(100)    not null,
     user_name       varchar2(100)    not null,
-    user_email      varchar2(100)    not null,
-    user_birthday   varchar2(100)    not null,
-    user_phone      varchar2(100)    not null,
-    user_nickname   varchar2(100)    not null,
-    user_photo      varchar2(200)
+    user_email      varchar2(100)    not null
 );
 -- user_vo fake 데이터
 insert into 
@@ -15,7 +11,7 @@ insert into
 values 
     ('admin', 'admin', '홍길동', 'admin@gmail.com', '2000-01-01', '010-1111-1111', 'admin', 'profile_image');
 -- big_goal 테이블
- CREATE TABLE big_goal (
+CREATE TABLE big_goal (
   bigGoal_number NUMBER NOT NULL PRIMARY KEY,
   bigGoal_name VARCHAR2(30 CHAR) NOT NULL,
   bigGoal_startDate DATE NOT NULL,
@@ -114,4 +110,5 @@ drop table user_vo;
 drop table task_vo;
 drop table big_goal;
 drop table small_goal;
+select * from task_vo;
 commit;
