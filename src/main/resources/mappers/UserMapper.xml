@@ -6,9 +6,9 @@
 
 <insert id="join" parameterType="net.softsociety.running_mate.dto.UserDTO">
 	insert into user_vo
-		(user_id, user_pw, user_name, user_email, user_birthday, user_phone, user_nickname, user_photo)
+		(user_id, user_pw, user_name, user_email)
 	values
-		(#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_birthday}, #{user_phone}, #{user_nickname}, #{user_photo})	
+		(#{user_id}, #{user_pw}, #{user_name}, #{user_email})	
 </insert>
 
 <select id="findUser" resultType="net.softsociety.running_mate.dto.UserDTO">

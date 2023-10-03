@@ -4,14 +4,7 @@
         
 <mapper namespace="net.softsociety.running_mate.dao.TaskDAO">
 
-<!-- 일정 등록 -->
- <!--  <insert id="addTask" parameterType="java.util.Map">
- 	INSERT INTO task_vo 
- 		(task_number, task_title, task_startDate, task_endDate)
- 	VALUES
-    	(task_seq.NEXTVAL, #{task_title}, #{task_startDate}, #{task_endDate})
-  </insert>-->
-  
+<!-- 일정 등록 --> 
 <insert id="addTask" parameterType="net.softsociety.running_mate.dto.TaskDTO">
   INSERT INTO task_vo 
     (task_number, task_title, task_startDate, task_endDate, user_id, bigGoal_number, smallGoal_number)
@@ -30,7 +23,7 @@
 	FROM 
 		task_vo
 	WHERE
-		TRUNC(task_startDate) = TRUNC(SYSDATE) -- Modify this condition as needed
+		user_id = #{user_id}
 </select>
 
 </mapper>
