@@ -10,28 +10,39 @@ import SmallDday from '../ShowSmallGoalDday/ShowSmallGoalDday'
 import SmallGoalModal from '../UpDateModal/UpdateSmallGoalModal/UpdateSmallGoalModal'
 import SmallGoalInfoModal from '../SmallGoalInfoModal/SmallGoalInfoModal'
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog'
+import InsertDailyGoalPlanModal from '../InsertDailyGoalPlanModal/InsertDailyGoalPlanModal'
+
+
 export default function SmallGoal(props) {
     const [SmallGoals, setSmallGoals] = useState(props.SmallGoals || []);
     const [isLoading, setLoading] = useState(true);
     const [SmallGoalId, setSmallGoalId] = useState();
-    
+    const [BigGoalId, setBigGoalId] = useState();
     // 상태로 수정 모달 열기/닫기 상태 랜더링 관리
-    const [isOpen, setIsOpen] = useState(false)
-    
+    const [isOpen, setIsOpen] = useState(false);
+
     // 정보 모달 랜더링 관리
     const [openinfo, setopeninfo] = useState(false);
-    
+
     // 다일로그 삭제모달 열기/닫기 관리 하는 버튼
     const [dialogIsOpen, setdialogIsOpen] = useState(false);
-    
+
+    // 일과 모달 열기/닫기 상태 랜더링 관리
+    const [DailyisOpen, setDailyIsOpen] = useState(false);
+
     // 다일로그 열기
     const openDialog = (smallGoalId) => {
         setdialogIsOpen(true)
         setSmallGoalId(smallGoalId)
     }
-    // 다일로그 닫기
+    // 다일로그 모달 닫기
     const onDialogClose = () => {
         setdialogIsOpen(false)
+    }
+
+    // 일과 모달 닫기
+    const onDailyClose = () => {
+        setDailyIsOpen(false)
     }
 
     // 수정 버튼 클릭 시 모달 열기
@@ -42,23 +53,29 @@ export default function SmallGoal(props) {
         }
     }
 
-    // 카드를 호버할 때 모달 열기
+    // 정보 모달 열기
     const handleModalHover = (smallGoalId) => {
         if (!openinfo) {
             setopeninfo(true);
-            console.log("정보 모달 함수 온");
             // 여기에서 smallGoalId 또는 다른 필요한 작업을 수행할 수 있습니다.
         }
     }
 
 
-    // 모달 닫기 함수
+    //수정 모달 닫기 함수
     const closeModal = () => {
         setIsOpen(false)
     }
-
+    //정보 모달 닫기 함수
     const closeinfoModal = () => {
         setopeninfo(false)
+    }
+
+    //일과 등록 모달 랜더링 관리
+    const handleDailyModalHover = (smallGoalId, BigGoalId) => {
+        setDailyIsOpen(true)
+        setSmallGoalId(smallGoalId)
+        setBigGoalId(BigGoalId)
     }
 
     const handleDeleteClick = async (smallGoalId) => {
@@ -74,6 +91,22 @@ export default function SmallGoal(props) {
             console.error('오류 발생:', error);
         }
     };
+
+    const cardHeader = (smallGoalId, BigGoalId) => (
+        <div>
+            <Button
+                size="sm"
+                variant="twoTone"
+                color="purple-600"
+                icon={<AiOutlineInfoCircle />}
+                onClick={() => handleDailyModalHover(smallGoalId, BigGoalId)}
+            >
+                일과 등록
+            </Button>
+        </div>
+
+
+    );
 
     const cardFooter = (smallGoalId) => (
         <div className="flex justify-center space-x-2">
@@ -141,6 +174,7 @@ export default function SmallGoal(props) {
                                 key={`goal-${index}`}
                                 className={styles.smallGoalCard}
                                 header={goal.smallGoal_name}
+                                headerExtra={cardHeader(goal.smallGoal_number, goal.bigGoal_number)}
                                 footer={cardFooter(goal.smallGoal_number)} // 카드의 고유 식별자를 전달
                             >
                                 {/* 목표 정보 표시 */}
@@ -190,6 +224,12 @@ export default function SmallGoal(props) {
             {dialogIsOpen && (
                 <ConfirmDialog dialogIsOpen={dialogIsOpen} onClose={onDialogClose} delete={() => handleDeleteClick(SmallGoalId)} />
             )}
+
+            {DailyisOpen && (
+                <InsertDailyGoalPlanModal DailyisOpen={DailyisOpen} onClose={onDailyClose} SmallGoalId={SmallGoalId} BigGoalId={BigGoalId}/>
+
+            )}
+            
         </div>
     );
 }
