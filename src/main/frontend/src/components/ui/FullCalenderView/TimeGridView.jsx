@@ -34,6 +34,7 @@ export default function TimeGridView() {
             events={events}
             height={'800px'}
             editable={true}
+            nowIndicator={true}
         />
     );
 }
