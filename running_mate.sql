@@ -89,15 +89,15 @@ VALUES (
     39                         -- bigGoal_number (예시)
 );
 -- task_vo 테이블
-CREATE TABLE TASK_TABLE (
+CREATE TABLE task_vo (
   task_number NUMBER PRIMARY KEY,
   task_title VARCHAR2(255),
   task_startDate DATE,
   task_endDate DATE,
   bigGoal_number NUMBER,
   smallGoal_number NUMBER,
-  FOREIGN KEY (bigGoal_number) REFERENCES big_Goal (bigGoal_number),
-  FOREIGN KEY (smallGoal_number) REFERENCES small_Goal (smallGoal_number)
+  FOREIGN KEY (bigGoal_number) REFERENCES big_Goal (bigGoal_number) on delete cascade,
+  FOREIGN KEY (smallGoal_number) REFERENCES small_Goal (smallGoal_number) on delete cascade
 );
 -- task_number 시퀀스
 CREATE SEQUENCE task_seq
