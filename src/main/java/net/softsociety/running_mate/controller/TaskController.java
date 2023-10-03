@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.running_mate.dto.TaskDTO;
 import net.softsociety.running_mate.service.TaskService;
 
 @Slf4j
@@ -22,7 +23,8 @@ public class TaskController {
 
 	// 오늘 날짜로 일정 추가
     @PostMapping("/addTask")
-    public void addTask(@RequestBody Map<String, Object> taskData) {
+    public void addTask(@RequestBody TaskDTO taskData) {
+    	log.debug("에드 테스크 {}", taskData);
         taskService.addTask(taskData);
     }
     // 오늘 날짜로 일정 조회

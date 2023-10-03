@@ -21,7 +21,7 @@ const BigGoal = (props) => {
     // 상태 변수 정의
     const [BigGoals, setGoals] = useState(props.BigGoals || [])
     const [isLoading, setLoading] = useState(true); // 로딩 상태를 나타내는 상태 변수
-    const userId = '신짱구'
+    const userId = 'user1'
     const [BigGoalId, setBigGoalId] = useState();
     // 상태로 모달 열기/닫기 상태 관리
     const [isOpen, setIsOpen] = useState(false);

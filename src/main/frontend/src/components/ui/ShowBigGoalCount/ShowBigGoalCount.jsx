@@ -5,7 +5,7 @@ import styles from './BigGoalCount.module.css'
 
 export default function BigGoalCount(props) {
   const [BigGoalsCount, setGoalsCount] = useState();
-  const userId = '신짱구';
+  const userId = 'user1'
   
   useEffect(() => {
     async function fetchGoals() {
