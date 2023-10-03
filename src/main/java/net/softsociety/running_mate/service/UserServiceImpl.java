@@ -38,10 +38,6 @@ public class UserServiceImpl implements UserService
 				.user_pw(passwordEncoder.encode(userDto.getUser_pw()))
 				.user_name(userDto.getUser_name())
 				.user_email(userDto.getUser_email())
-				.user_birthday(userDto.getUser_birthday())
-				.user_phone(userDto.getUser_phone())
-				.user_nickname(userDto.getUser_nickname())
-				.user_photo(userDto.getUser_photo())
 				.build();
 		
 		userDao.join(userVo);
