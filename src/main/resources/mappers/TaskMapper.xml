@@ -7,9 +7,9 @@
 <!-- 일정 등록 -->
  <insert id="addTask" parameterType="map">
  	INSERT INTO events 
- 		(task_title, task_startDate, task_endDate)
+ 		(task_number, task_title, task_startDate, task_endDate)
  	VALUES
-    	(#{task_title}, #{task_startDate}, #{task_endDate})
+    	(task_seq.NEXTVAL #{task_title}, #{task_startDate}, #{task_endDate})
   </insert>
 
 <!-- 일정 불러오기 -->
