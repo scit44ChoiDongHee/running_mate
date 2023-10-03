@@ -9,7 +9,7 @@
   INSERT INTO task_vo 
     (task_number, task_title, task_startDate, task_endDate, user_id, bigGoal_number, smallGoal_number)
   VALUES
-    (task_seq.NEXTVAL, #{task_title}, TO_TIMESTAMP(#{task_startDate}, 'YYYY-MM-DD HH24:MI:SS.FF1'), TO_TIMESTAMP(#{task_endDate}, 'YYYY-MM-DD HH24:MI:SS.FF1'), #{user_id}, #{bigGoal_number}, #{smallGoal_number})
+    (task_seq.NEXTVAL, #{task_title}, TO_TIMESTAMP(#{task_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP(#{task_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number})
 </insert>
 
 

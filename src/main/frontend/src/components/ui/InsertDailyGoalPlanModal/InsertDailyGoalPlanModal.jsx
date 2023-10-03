@@ -82,7 +82,7 @@ export default function InsertDailyGoalPlanModal(props) {
         e.preventDefault();
         try {
             // Axios를 사용하여 데이터를 전송
-            console.log(formData);
+            console.log("폼 데이터",formData);
             const response = await axios.post('/api/user/task/addTask', formData);
         } catch (error) {
             console.error('오류 발생:', error);

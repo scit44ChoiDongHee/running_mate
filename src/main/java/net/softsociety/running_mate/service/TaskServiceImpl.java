@@ -19,6 +19,7 @@ public class TaskServiceImpl implements TaskService {
 	// 오늘 날짜로 일정 추가
 	@Override
     public void addTask(TaskDTO taskData) {
+		log.debug("서비스 taskData {}",taskData);
         taskDAO.addTask(taskData);
     }
 	// 오늘 날짜로 일정 조회

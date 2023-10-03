@@ -15,7 +15,7 @@ const ModalbigGoal = () => {
       try {
         const response = await axios.get(`/api/BigGoals?userId=${userId}`);
         setBigGoals(response.data);
-        console.log(BigGoals);
+        
       } catch (error) {
         console.error('오류 발생:', error);
       }
