@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="net.softsociety.running_mate.dao.TaskDAO">
+
+<!-- 일정 등록 -->
+ <insert id="addTask" parameterType="map">
+ 	INSERT INTO events 
+ 		(task_title, task_startDate, task_endDate)
+ 	VALUES
+    	(#{task_title}, #{task_startDate}, #{task_endDate})
+  </insert>
+
+<!-- 일정 불러오기 -->
+<select id="getTasksByStartDate" resultType="java.util.Map">
+	SELECT 
+		task_number, task_name, task_startDate, task_endDate, bigGoal_number, smallGoal_number
+	FROM 
+		task_vo
+	WHERE
+		TRUNC(task_startDate) = TRUNC(SYSDATE) -- Modify this condition as needed
+</select>
+
+</mapper>
