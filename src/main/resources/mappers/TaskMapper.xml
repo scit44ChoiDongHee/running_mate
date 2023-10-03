@@ -5,11 +5,11 @@
 <mapper namespace="net.softsociety.running_mate.dao.TaskDAO">
 
 <!-- 일정 등록 -->
- <insert id="addTask" parameterType="map">
+ <insert id="addTask" parameterType="java.util.Map">
  	INSERT INTO events 
  		(task_number, task_title, task_startDate, task_endDate)
  	VALUES
-    	(task_seq.NEXTVAL #{task_title}, #{task_startDate}, #{task_endDate})
+    	(task_seq.NEXTVAL, #{task_title}, #{task_startDate}, #{task_endDate})
   </insert>
 
 <!-- 일정 불러오기 -->
