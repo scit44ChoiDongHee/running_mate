@@ -7,9 +7,9 @@
 <!-- 일정 등록 -->
  <insert id="addTask" parameterType="java.util.Map">
  	INSERT INTO events 
- 		(task_number, task_title, task_startDate, task_endDate)
+ 		(task_number, task_title, task_startDate, task_endDate, user_id)
  	VALUES
-    	(task_seq.NEXTVAL, #{task_title}, #{task_startDate}, #{task_endDate})
+    	(task_seq.NEXTVAL, #{task_title}, #{task_startDate}, #{task_endDate}, #{user_id})
   </insert>
 
 <!-- 일정 불러오기 -->
@@ -19,7 +19,7 @@
 	FROM 
 		task_vo
 	WHERE
-		TRUNC(task_startDate) = TRUNC(SYSDATE) -- Modify this condition as needed
+		user_id = #{user_id}
 </select>
 
 </mapper>

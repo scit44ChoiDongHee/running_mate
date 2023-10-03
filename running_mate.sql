@@ -21,7 +21,8 @@ values
   bigGoal_startDate DATE NOT NULL,
   bigGoal_endDate DATE NOT NULL,
   bigGoal_state VARCHAR2(20 CHAR) DEFAULT 'ongoing',
-  user_id VARCHAR2(20 CHAR) NOT NULL,
+  user_id varchar2(100) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user_vo (user_id) on delete cascade,
   CONSTRAINT check_bigGoal_state CHECK (bigGoal_state IN ('ongoing', 'completed'))
 );
 -- small_goal 테이블
@@ -91,11 +92,13 @@ VALUES (
 -- task_vo 테이블
 CREATE TABLE task_vo (
   task_number NUMBER PRIMARY KEY,
-  task_title VARCHAR2(255),
-  task_startDate DATE,
-  task_endDate DATE,
-  bigGoal_number NUMBER,
-  smallGoal_number NUMBER,
+  task_title VARCHAR2(255) NOT NULL,
+  task_startDate DATE NOT NULL,
+  task_endDate DATE NOT NULL,
+  user_id varchar2(100) NOT NULL,
+  bigGoal_number NUMBER NOT NULL,
+  smallGoal_number NUMBER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user_vo (user_id) on delete cascade,
   FOREIGN KEY (bigGoal_number) REFERENCES big_Goal (bigGoal_number) on delete cascade,
   FOREIGN KEY (smallGoal_number) REFERENCES small_Goal (smallGoal_number) on delete cascade
 );
@@ -108,5 +111,7 @@ CREATE SEQUENCE task_seq
 -- 조회용 sql문
 select * from user_vo;
 drop table user_vo;
+drop table task_vo;
+drop table big_goal;
 drop table small_goal;
 commit;
