@@ -32,7 +32,7 @@ export default function FullCalendarView() {
                 listDay: { buttonText: 'Day' },
                 listWeek: { buttonText: 'Week' },
                 listMonth: { buttonText: 'Month' },
-              }}
+            }}
         />
     );
 }

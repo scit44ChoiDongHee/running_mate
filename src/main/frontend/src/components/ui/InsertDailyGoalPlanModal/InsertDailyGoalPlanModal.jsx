@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import { Button, Input, } from '@/components/ui';
 import styles from './InsertDailyGoalPlanModal.module.css'
-import DatePicker from '@/components/ui/DatePicker'
 import TimeInput from '@/components/ui/TimeInput'
 
 const modalStyle = {
@@ -28,15 +27,18 @@ const modalStyle = {
 Modal.setAppElement('#root'); // 모달을 루트 엘리먼트에 연결 스크린 리더가 읽기 편하게 뒷 화면을 잠그는 기능
 
 export default function InsertDailyGoalPlanModal(props) {
-
+    const todayDate = new Date();
+    const dateString = todayDate.toJSON();
+    const dateStringSub = dateString.substring(0, dateString.indexOf("T"));
+   
     {/* 모달의 열고 닫는 걸 기억 */ }
     const [isOpen, setIsOpen] = useState(props.DailyisOpen);
 
     {/* 폼의 데이터를 저장 */ }
     const [formData, setFormData] = useState({
         task_title: '',
-        task_startDate: '',
-        task_endDate: '',
+        task_startDate: `${dateStringSub}`,
+        task_endDate: `${dateStringSub}`,
         user_id: '신짱구',
         bigGoal_number: props.BigGoalId,
         smallGoal_number: props.SmallGoalId
@@ -80,8 +82,8 @@ export default function InsertDailyGoalPlanModal(props) {
         e.preventDefault();
         try {
             // Axios를 사용하여 데이터를 전송
-            const response = await axios.post('/api/user/task', formData); 
             console.log(formData);
+            const response = await axios.post('/api/user/task', formData);
         } catch (error) {
             console.error('오류 발생:', error);
         }
