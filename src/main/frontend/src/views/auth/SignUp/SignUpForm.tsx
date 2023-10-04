@@ -16,20 +16,22 @@ interface SignUpFormProps extends CommonProps {
 }
 
 type SignUpFormSchema = {
-    userName: string
-    password: string
-    email: string
+    user_id: string
+    user_pw: string
+    user_name: string
+    user_email: string
 }
 
 const validationSchema = Yup.object().shape({
-    userName: Yup.string().required('Please enter your user name'),
-    email: Yup.string()
+    user_id: Yup.string().required('Please enter your user id'),
+    user_email: Yup.string()
         .email('Invalid email')
         .required('Please enter your email'),
-    password: Yup.string().required('Please enter your password'),
-    confirmPassword: Yup.string().oneOf(
-        [Yup.ref('password')],
-        'Your passwords do not match'
+    user_name: Yup.string().required('Please enter your user name'),
+    user_pw: Yup.string().required('Please enter your user_password'),
+    confirmuser_pw: Yup.string().oneOf(
+        [Yup.ref('user_pw')],
+        'Your user_passwords do not match'
     ),
 })
 
@@ -44,9 +46,16 @@ const SignUpForm = (props: SignUpFormProps) => {
         values: SignUpFormSchema,
         setSubmitting: (isSubmitting: boolean) => void
     ) => {
-        const { userName, password, email } = values
+        const { user_id, user_pw, user_name, user_email } = values
+        console.log(values)
+
         setSubmitting(true)
-        const result = await signUp({ userName, password, email })
+        const result = await signUp({
+            user_id,
+            user_pw,
+            user_name,
+            user_email,
+        })
 
         if (result?.status === 'failed') {
             setMessage(result.message)
@@ -64,10 +73,11 @@ const SignUpForm = (props: SignUpFormProps) => {
             )}
             <Formik
                 initialValues={{
-                    userName: 'admin1',
-                    password: '123Qwe1',
-                    confirmPassword: '123Qwe1',
-                    email: 'test@testmail.com',
+                    user_id: '',
+                    user_pw: '',
+                    confirmuser_pw: '',
+                    user_name: '',
+                    user_email: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {
@@ -83,38 +93,41 @@ const SignUpForm = (props: SignUpFormProps) => {
                         <FormContainer>
                             <FormItem
                                 label="아이디"
-                                invalid={errors.userName && touched.userName}
-                                errorMessage={errors.userName}
+                                invalid={errors.user_id && touched.user_id}
+                                errorMessage={errors.user_id}
                             >
                                 <Field
                                     type="text"
                                     autoComplete="off"
-                                    name="userName"
+                                    name="user_id"
                                     placeholder="아이디 입력"
                                     component={Input}
                                 />
                             </FormItem>
                             <FormItem
                                 label="이메일"
-                                invalid={errors.email && touched.email}
-                                errorMessage={errors.email}
+                                invalid={
+                                    errors.user_email && touched.user_email
+                                }
+                                errorMessage={errors.user_email}
                             >
                                 <Field
                                     type="email"
                                     autoComplete="off"
-                                    name="email"
+                                    name="user_email"
                                     placeholder="이메일 입력"
                                     component={Input}
                                 />
                             </FormItem>
                             <FormItem
                                 label="비밀번호"
-                                invalid={errors.password && touched.password}
-                                errorMessage={errors.password}
+                                invalid={errors.user_pw && touched.user_pw}
+                                errorMessage={errors.user_pw}
                             >
                                 <Field
+                                    type="password"
                                     autoComplete="off"
-                                    name="password"
+                                    name="user_pw"
                                     placeholder="비밀번호"
                                     component={PasswordInput}
                                 />
@@ -122,16 +135,30 @@ const SignUpForm = (props: SignUpFormProps) => {
                             <FormItem
                                 label="비밀번호 확인"
                                 invalid={
-                                    errors.confirmPassword &&
-                                    touched.confirmPassword
+                                    errors.confirmuser_pw &&
+                                    touched.confirmuser_pw
                                 }
-                                errorMessage={errors.confirmPassword}
+                                errorMessage={errors.confirmuser_pw}
                             >
                                 <Field
+                                    type="password"
                                     autoComplete="off"
-                                    name="confirmPassword"
+                                    name="confirmuser_pw"
                                     placeholder="비밀번호 확인"
                                     component={PasswordInput}
+                                />
+                            </FormItem>
+                            <FormItem
+                                label="사용자 이름"
+                                invalid={errors.user_name && touched.user_name}
+                                errorMessage={errors.user_name}
+                            >
+                                <Field
+                                    type="text"
+                                    autoComplete="off"
+                                    name="user_name"
+                                    placeholder="사용자 이름"
+                                    component={Input}
                                 />
                             </FormItem>
                             <Button
