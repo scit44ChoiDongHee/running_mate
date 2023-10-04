@@ -7,7 +7,7 @@ import styles from './Modal&bigGoal.module.css'
 
 const ModalbigGoal = () => {
   const [BigGoals, setBigGoals] = useState([]);
-  const userId = '신짱구'
+  const userId = 'user1'
 
   // 컴포넌트가 마운트될 때, 서버에서 대목표 목록을 가져와서 상태에 저장합니다.
   useEffect(() => {
@@ -15,6 +15,7 @@ const ModalbigGoal = () => {
       try {
         const response = await axios.get(`/api/BigGoals?userId=${userId}`);
         setBigGoals(response.data);
+        
       } catch (error) {
         console.error('오류 발생:', error);
       }

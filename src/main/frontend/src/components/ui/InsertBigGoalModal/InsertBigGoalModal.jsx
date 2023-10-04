@@ -35,7 +35,7 @@ export default function BigGoalModal(props) {
     bigGoal_name: '',
     bigGoal_startDate: '',
     bigGoal_endDate: '',
-    user_id: '신짱구'
+    user_id: 'user1'
   });
 
   {/* 모달 열림 */ }

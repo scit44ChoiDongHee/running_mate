@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.running_mate.dao.TaskDAO;
+import net.softsociety.running_mate.dto.TaskDTO;
 
 @Slf4j
 @Service
@@ -17,7 +18,8 @@ public class TaskServiceImpl implements TaskService {
 
 	// 오늘 날짜로 일정 추가
 	@Override
-    public void addTask(Map<String, Object> taskData) {
+    public void addTask(TaskDTO taskData) {
+		log.debug("서비스 taskData {}",taskData);
         taskDAO.addTask(taskData);
     }
 	// 오늘 날짜로 일정 조회

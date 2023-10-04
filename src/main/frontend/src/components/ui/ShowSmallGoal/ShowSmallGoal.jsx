@@ -176,6 +176,9 @@ export default function SmallGoal(props) {
                                 header={goal.smallGoal_name}
                                 headerExtra={cardHeader(goal.smallGoal_number, goal.bigGoal_number)}
                                 footer={cardFooter(goal.smallGoal_number)} // 카드의 고유 식별자를 전달
+                                footerClass={styles.footer}
+                                headerClass={styles.header}
+                                bodyClass={styles.body}
                             >
                                 {/* 목표 정보 표시 */}
                                 <p>{goal.smallGoal_check}</p>

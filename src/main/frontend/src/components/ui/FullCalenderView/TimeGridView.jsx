@@ -15,18 +15,20 @@ export default function TimeGridView() {
 
 
     // 예시 일정 데이터
-    const events = [
-        {
-            title: '운동하기',
-            start: `${dateStringSub}T10:00:00`,
-            end: `${dateStringSub}T12:00:00`
-        },
-        {
-            title: '밥머기',
-            start: '2023-10-04T14:00:00',
-            end: '2023-10-04T16:30:00'
-        },
-    ]
+    // const events = [
+    //     {
+    //         title: '운동하기',
+    //         start: `${dateStringSub}T10:00:00`,
+    //         end: `${dateStringSub}T12:00:00`
+    //     },
+    //     {
+    //         title: '밥머기',
+    //         start: '2023-10-04T14:00:00',
+    //         end: '2023-10-04T16:30:00'
+    //     },
+    // ]
+
+    
     return (
         <FullCalendar
             plugins={[timeGridPlugin]}

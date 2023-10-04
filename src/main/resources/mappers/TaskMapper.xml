@@ -4,13 +4,17 @@
         
 <mapper namespace="net.softsociety.running_mate.dao.TaskDAO">
 
-<!-- 일정 등록 -->
- <insert id="addTask" parameterType="java.util.Map">
- 	INSERT INTO task_vo 
- 		(task_number, task_title, task_startDate, task_endDate, user_id)
- 	VALUES
-    	(task_seq.NEXTVAL, #{task_title}, #{task_startDate}, #{task_endDate}, #{user_id})
-  </insert>
+<!-- 일정 등록 --> 
+<insert id="addTask" parameterType="net.softsociety.running_mate.dto.TaskDTO">
+  INSERT INTO task_vo 
+    (task_number, task_title, task_startDate, task_endDate, user_id, bigGoal_number, smallGoal_number)
+  VALUES
+    (task_seq.NEXTVAL, #{task_title}, TO_TIMESTAMP(#{task_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP(#{task_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number})
+</insert>
+
+
+
+
 
 <!-- 일정 불러오기 -->
 <select id="getTasksByStartDate" resultType="java.util.Map">
