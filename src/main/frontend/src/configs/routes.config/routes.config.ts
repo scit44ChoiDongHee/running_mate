@@ -31,6 +31,12 @@ export let protectedRoutes = [
         authority: [],
     },
     {
+        key: 'month',
+        path: '/month',
+        component: lazy(() => import('@/views/demo/month')),
+        authority: [],
+    },
+    {
         key: 'collapseMenu.item1',
         path: '/collapse-menu-item-view-1',
         component: lazy(() => import('@/views/demo/CollapseMenuItemView1')),

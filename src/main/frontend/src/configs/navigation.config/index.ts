@@ -48,6 +48,16 @@ const navigationConfig: NavigationTree[] = [
         subMenu: [],
     },
     {
+        key: 'month',
+        path: '/month',
+        title: '달력',
+        translateKey: 'nav.month',
+        icon: 'singleMenu',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
+    {
         key: 'collapseMenu',
         path: '',
         title: 'Collapse Menu',

@@ -4,26 +4,25 @@
         
 <mapper namespace="net.softsociety.running_mate.dao.TaskDAO">
 
+
 <!-- 일정 등록 --> 
 <insert id="addTask" parameterType="net.softsociety.running_mate.dto.TaskDTO">
   INSERT INTO task_vo 
     (task_number, task_title, task_startDate, task_endDate, user_id, bigGoal_number, smallGoal_number)
   VALUES
-    (task_seq.NEXTVAL, #{task_title}, TO_TIMESTAMP(#{task_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP(#{task_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number})
+    (task_seq.NEXTVAL, #{task_title}, TO_DATE(#{task_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{task_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number})
 </insert>
 
 
-
-
-
-<!-- 일정 불러오기 -->
-<select id="getTasksByStartDate" resultType="java.util.Map">
+<select id="getTasksByStartDate" parameterType="String" resultType="java.util.Map">
 	SELECT 
-		task_number, task_name, task_startDate, task_endDate, bigGoal_number, smallGoal_number
+		task_number, task_title, task_startDate, task_endDate, bigGoal_number, smallGoal_number
 	FROM 
 		task_vo
 	WHERE
-		user_id = #{user_id}
+		user_id = #{userID} AND TO_CHAR(task_startDate,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')
 </select>
+
+
 
 </mapper>

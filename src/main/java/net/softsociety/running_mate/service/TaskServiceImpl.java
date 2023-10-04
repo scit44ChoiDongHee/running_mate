@@ -24,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
     }
 	// 오늘 날짜로 일정 조회
 	@Override
-    public List<Map<String, Object>> getTasksByStartDate() {
-        return taskDAO.getTasksByStartDate();
+    public List<Map<String, Object>> getTasksByStartDate(String userID) {
+        return taskDAO.getTasksByStartDate(userID);
     }
 }

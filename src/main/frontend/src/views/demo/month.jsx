@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import TimeGridView from '../../components/ui/FullCalenderView/TimeGridView'
-import styles from './daily.module.css'
+import React, { useEffect, useState } from 'react'
+import FullCalendarView from '../../components/ui/FullCalenderView/FullCalenderView'
 import axios from 'axios';
+import styles from './month.module.css'
 
-export default function daily() {
+export default function month() {
 
   const [BigGoals, setBigGoals] = useState([]);
   const [smallGoals, setSmallGoals] = useState([]);
@@ -41,16 +41,12 @@ export default function daily() {
   console.log("대목표", BigGoals);
   console.log("소목표", smallGoals);
 
-  return (
 
-    <div className={styles.container}>
-      <div className={styles.containerWrap}>
-        <TimeGridView BigGoals={BigGoals} smallGoals={smallGoals}/>
-      </div>
-      <div className={styles.containerWrap}>
-        <TimeGridView BigGoals={BigGoals} smallGoals={smallGoals} />
+  return (
+    <div >
+      <div >
+        <FullCalendarView BigGoals={BigGoals} smallGoals={smallGoals} />
       </div>
     </div>
-
   )
 }

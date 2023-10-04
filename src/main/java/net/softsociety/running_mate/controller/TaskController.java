@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,8 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+   
     // 오늘 날짜로 일정 추가
- // 오늘 날짜로 일정 추가
     @PostMapping("/addTask")
     public void addTask(@RequestBody TaskDTO taskData) {
         log.debug("컨트롤러  {}", taskData);
@@ -61,7 +62,8 @@ public class TaskController {
 
     // 오늘 날짜로 일정 조회
     @GetMapping("/getTasks")
-    public List<Map<String, Object>> getTasksByStartDate() {
-        return taskService.getTasksByStartDate();
+    public List<Map<String, Object>> getTasksByStartDate(@RequestParam String userID) {
+    	log.debug("조회 파람 값 확인{}",userID);
+        return taskService.getTasksByStartDate(userID);
     }
 }
