@@ -3,7 +3,6 @@ import authRoute from './authRoute'
 import type { Routes } from '@/@types/routes'
 export const publicRoutes: Routes = [...authRoute]
 
-
 export let protectedRoutes = [
     {
         key: 'home',
@@ -45,32 +44,30 @@ export let protectedRoutes = [
     {
         key: 'groupMenu.single',
         path: '/group-single-menu-item-view',
-        component: lazy(() =>
-            import('@/views/demo/GroupSingleMenuItemView')
-        ),
+        component: lazy(() => import('@/views/demo/GroupSingleMenuItemView')),
         authority: [],
     },
     {
         key: 'groupMenu.collapse.item1',
         path: '/group-collapse-menu-item-view-1',
-        component: lazy(() =>
-            import('@/views/demo/GroupCollapseMenuItemView1')
+        component: lazy(
+            () => import('@/views/demo/GroupCollapseMenuItemView1')
         ),
         authority: [],
     },
     {
         key: 'groupMenu.collapse.item2',
         path: '/group-collapse-menu-item-view-2',
-        component: lazy(() =>
-            import('@/views/demo/GroupCollapseMenuItemView2')
+        component: lazy(
+            () => import('@/views/demo/GroupCollapseMenuItemView2')
         ),
         authority: [],
     },
 ]
 export function getProtectedRoutes() {
-    return protectedRoutes;
-  }
-  
-  export function updateProtectedRoutes(newRoutes) {
-    protectedRoutes = newRoutes;
-  }
+    return protectedRoutes
+}
+
+export function updateProtectedRoutes(newRoutes) {
+    protectedRoutes = newRoutes
+}

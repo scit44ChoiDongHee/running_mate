@@ -105,10 +105,12 @@ CREATE SEQUENCE task_seq
   NOMAXVALUE
   NOCYCLE;
 -- 조회용 sql문
-select * from user_vo;
 drop table user_vo;
 drop table task_vo;
 drop table big_goal;
 drop table small_goal;
+select * from user_vo;
+select * from big_goal;
+select * from small_goal;
 select * from task_vo;
 commit;

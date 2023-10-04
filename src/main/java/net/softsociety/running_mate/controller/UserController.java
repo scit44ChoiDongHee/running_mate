@@ -42,7 +42,7 @@ public class UserController {
 	@Autowired
 	TokenProvider tokenProvider;
     
-	@PostMapping("/sign-in")
+	@PostMapping("/sign-up")
 	public ResponseEntity<?> join(@RequestBody UserDTO userDto) {
 		ResponseEntity<?> responseEntity = null;
 		
@@ -67,7 +67,7 @@ public class UserController {
 		return responseEntity;
 	}
 	
-	@PostMapping("/sign-up")
+	@PostMapping("/sign-in")
 	public ResponseEntity<?> login(@RequestBody LoginDTO loginDto) {
 		ResponseEntity<?> responseEntity = null;
 		

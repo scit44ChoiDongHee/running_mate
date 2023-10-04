@@ -18,14 +18,14 @@ interface SignInFormProps extends CommonProps {
 }
 
 type SignInFormSchema = {
-    userName: string
-    password: string
+    user_id: string
+    user_pw: string
     rememberMe: boolean
 }
 
 const validationSchema = Yup.object().shape({
-    userName: Yup.string().required('아이디를 입력하세요.'),
-    password: Yup.string().required('비밀번호를 입력하세요.'),
+    user_id: Yup.string().required('아이디를 입력하세요.'),
+    user_pw: Yup.string().required('비밀번호를 입력하세요.'),
     rememberMe: Yup.bool(),
 })
 
@@ -33,8 +33,8 @@ const SignInForm = (props: SignInFormProps) => {
     const {
         disableSubmit = false,
         className,
-        forgotPasswordUrl = '/forgot-password',
-        signUpUrl = '/sign-up',
+        forgotPasswordUrl = '/user/forgot-password',
+        signUpUrl = '/user/sign-up',
     } = props
 
     const [message, setMessage] = useTimeOutMessage()
@@ -45,10 +45,10 @@ const SignInForm = (props: SignInFormProps) => {
         values: SignInFormSchema,
         setSubmitting: (isSubmitting: boolean) => void
     ) => {
-        const { userName, password } = values
+        const { user_id, user_pw } = values
         setSubmitting(true)
 
-        const result = await signIn({ userName, password })
+        const result = await signIn({ user_id, user_pw })
 
         if (result?.status === 'failed') {
             setMessage(result.message)
@@ -66,8 +66,8 @@ const SignInForm = (props: SignInFormProps) => {
             )}
             <Formik
                 initialValues={{
-                    userName: 'admin',
-                    password: '123Qwe',
+                    user_id: '',
+                    user_pw: '',
                     rememberMe: true,
                 }}
                 validationSchema={validationSchema}
@@ -85,15 +85,15 @@ const SignInForm = (props: SignInFormProps) => {
                             <FormItem
                                 label="아이디"
                                 invalid={
-                                    (errors.userName &&
-                                        touched.userName) as boolean
+                                    (errors.user_id &&
+                                        touched.user_id) as boolean
                                 }
-                                errorMessage={errors.userName}
+                                errorMessage={errors.user_id}
                             >
                                 <Field
                                     type="text"
                                     autoComplete="off"
-                                    name="userName"
+                                    name="user_id"
                                     placeholder="아이디 입력"
                                     component={Input}
                                 />
@@ -101,14 +101,14 @@ const SignInForm = (props: SignInFormProps) => {
                             <FormItem
                                 label="비밀번호"
                                 invalid={
-                                    (errors.password &&
-                                        touched.password) as boolean
+                                    (errors.user_pw &&
+                                        touched.user_pw) as boolean
                                 }
-                                errorMessage={errors.password}
+                                errorMessage={errors.user_pw}
                             >
                                 <Field
                                     autoComplete="off"
-                                    name="password"
+                                    name="user_pw"
                                     placeholder="비밀번호 입력"
                                     component={PasswordInput}
                                 />
