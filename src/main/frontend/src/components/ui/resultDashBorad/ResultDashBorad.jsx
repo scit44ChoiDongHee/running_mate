@@ -1,12 +1,19 @@
 import Card from '@/components/ui/Card'
 import React from 'react'
 import styles from './ResultDashBorad.module.css'
+import BasicBar from '../Bar/BasicBar'
+import GroupedBar from '../Bar/GroupedBar'
+import BasicColumn from '../Bar/BasicColumn'
+import BasicArea from '../Bar/BasicArea'
 
 export default function ResultDashBorad() {
   return (
     <div className={styles.container}>
       <div className={styles.topbox}>
         <h1>대목표 : Learn SQL</h1>
+        <br />
+        <hr />
+        <br />
         <div className={styles.cardwarp}>
           <Card
             header="대목표 산하 소목표 이름"
@@ -48,12 +55,16 @@ export default function ResultDashBorad() {
           >
             <p>850H</p>
           </Card>
-
         </div>
 
       </div>
 
-      <div>
+
+      <div className={styles.bouttombox}>
+        <BasicBar />
+        <GroupedBar />
+        <BasicColumn />
+        <BasicArea />
 
       </div>
 

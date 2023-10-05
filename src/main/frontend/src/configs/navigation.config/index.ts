@@ -16,17 +16,7 @@ const navigationConfig: NavigationTree[] = [
         authority: [],
         subMenu: [],
     },
-    /** Example purpose only, please remove */
-    {
-        key: 'result',
-        path: '/result',
-        title: '결과',
-        translateKey: 'nav.result',
-        icon: 'singleMenu',
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [],
-        subMenu: [],
-    },
+    /** Example purpose only, please remove */  
     {
         key: 'goal',
         path: '/goal',
@@ -52,6 +42,16 @@ const navigationConfig: NavigationTree[] = [
         path: '/month',
         title: '달력',
         translateKey: 'nav.month',
+        icon: 'singleMenu',
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [],
+        subMenu: [],
+    },
+    {
+        key: 'result',
+        path: '/result',
+        title: '결과',
+        translateKey: 'nav.result',
         icon: 'singleMenu',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],

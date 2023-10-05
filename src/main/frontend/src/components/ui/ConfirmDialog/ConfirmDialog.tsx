@@ -29,7 +29,7 @@ export default function ConfirmDialog(props) {
                 onClose={onDialogClose}
                 onRequestClose={onDialogClose}
             >
-                <h5 className="mb-4">대목표를 삭제하시겠습니까?</h5>
+                <h5 className="mb-4">소목표를 삭제하시겠습니까?</h5>
                 <p>
                    
                 </p>

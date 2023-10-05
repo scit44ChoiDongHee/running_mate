@@ -9,6 +9,9 @@ import SmallGoalCount from '../../components/ui/ShowSmallGoalCount/ShowSmallGoal
 import SmallGoalModal from '../../components/ui/InsertSmallGoalModal/InsertSmallGoalModal.jsx'
 import SmallGoal from '../../components/ui/ShowSmallGoal/ShowSmallGoal'
 import OneBigGoalDday from '../../components/ui/ShowBigGoalDday/OneBigGoalDday'
+import Chart from 'react-apexcharts'
+import { COLORS } from '@/constants/chart.constant'
+
 export default function BigGoalDashBoard() {
     const [SmallGoals, setSmallGoals] = useState([]);
     const [isLoading, setLoading] = useState(true); // 추가: 데이터 로딩 상태
@@ -80,8 +83,33 @@ export default function BigGoalDashBoard() {
                 </div>
 
                 <div className={styles.dashBoardTopRight}>
-                    소목표 비중 그래프
+                    
                     {/* 여기는 소목표 비중 그래프 */}
+                    <div>
+                        <h5>소목표 별 총 투입시간 비중</h5>
+                        <Chart
+                            options={{
+                                colors: COLORS,
+                                labels: ['Study SQL Basics', 'Study Java Basics', 'Study Spring Boot Basics'],
+                                responsive: [
+                                    {
+                                        breakpoint: 480,
+                                        options: {
+                                            chart: {
+                                                width: 200,
+                                            },
+                                            legend: {
+                                                position: 'bottom',
+                                            },
+                                        },
+                                    },
+                                ],
+                            }}
+                            series={[40, 20, 60]}
+                            height={300}
+                            type="pie"
+                        />
+                    </div>
                 </div>
             </div>
 
