@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios';
 import { Button, Input, } from '@/components/ui';
@@ -30,7 +30,7 @@ export default function InsertDailyGoalPlanModal(props) {
     const todayDate = new Date();
     const dateString = todayDate.toJSON();
     const dateStringSub = dateString.substring(0, dateString.indexOf("T"));
-   
+
     {/* 모달의 열고 닫는 걸 기억 */ }
     const [isOpen, setIsOpen] = useState(props.DailyisOpen);
 
@@ -82,7 +82,7 @@ export default function InsertDailyGoalPlanModal(props) {
         e.preventDefault();
         try {
             // Axios를 사용하여 데이터를 전송
-            console.log("폼 데이터",formData);
+            console.log("폼 데이터", formData);
             const response = await axios.post('/api/user/task/addTask', formData);
         } catch (error) {
             console.error('오류 발생:', error);
@@ -90,6 +90,11 @@ export default function InsertDailyGoalPlanModal(props) {
         props.onClose();
         closeModal(); // 모달 닫기
     };
+
+    // 폼데이터 값 확인
+    useEffect(() => {
+        console.log("formData 값 확인", formData);
+    }, [formData]);
 
     return (
         <div className={styles.modalContainer}>

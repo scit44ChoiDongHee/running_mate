@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import net.softsociety.running_mate.dto.ActualTaskDTO;
 import net.softsociety.running_mate.dto.TaskDTO;
 import net.softsociety.running_mate.service.TaskService;
 
@@ -26,8 +28,8 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+   
     // 오늘 날짜로 일정 추가
- // 오늘 날짜로 일정 추가
     @PostMapping("/addTask")
     public void addTask(@RequestBody TaskDTO taskData) {
         log.debug("컨트롤러  {}", taskData);
@@ -61,7 +63,45 @@ public class TaskController {
 
     // 오늘 날짜로 일정 조회
     @GetMapping("/getTasks")
-    public List<Map<String, Object>> getTasksByStartDate() {
-        return taskService.getTasksByStartDate();
+    public List<Map<String, Object>> getTasksByStartDate(@RequestParam String userID) {
+    	log.debug("조회 파람 값 확인 {}",userID);
+        return taskService.getTasksByStartDate(userID);
     }
+    
+    //실제 일정 과업 저장
+    @PostMapping("/addActualTask")
+    public void addActualTask(@RequestBody ActualTaskDTO actualTaskDTO) {
+    	
+    	log.debug("실제 과업 컨트롤러 {}", actualTaskDTO);
+        // 넘어온 날짜 문자열
+        String taskStartDateStr = actualTaskDTO.getActualTask_startDate();
+        String taskEndDateStr = actualTaskDTO.getActualTask_endDate();
+        
+        // ISO 8601 형식의 문자열을 LocalDateTime으로 변환
+        ZonedDateTime taskStartDate = ZonedDateTime.parse(taskStartDateStr, DateTimeFormatter.ISO_DATE_TIME);
+        ZonedDateTime taskEndDate = ZonedDateTime.parse(taskEndDateStr, DateTimeFormatter.ISO_DATE_TIME);
+
+        // 한국 표준시로 변환
+        ZoneId koreaZoneId = ZoneId.of("Asia/Seoul");
+        ZonedDateTime taskStartDateKST = taskStartDate.withZoneSameInstant(koreaZoneId);
+        ZonedDateTime taskEndDateKST = taskEndDate.withZoneSameInstant(koreaZoneId);
+
+        // LocalDateTime을 필요한 형식의 문자열로 변환
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTaskStartDate = taskStartDateKST.format(outputFormatter);
+        String formattedTaskEndDate = taskEndDateKST.format(outputFormatter);
+
+        log.debug("시작 날짜 시간: {}", formattedTaskStartDate);
+        log.debug("끝 날짜 시간: {}", formattedTaskEndDate);
+
+        actualTaskDTO.setActualTask_startDate(formattedTaskStartDate);
+        actualTaskDTO.setActualTask_endDate(formattedTaskEndDate);
+        
+        taskService.addActualTask(actualTaskDTO);
+        log.debug("실제 과업 저장 후 돌아옴 {}", actualTaskDTO);
+    	
+    }
+    
+    
+    
 }

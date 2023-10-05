@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import TimeGridView from '../../components/ui/FullCalenderView/TimeGridView'
-import styles from './daily.module.css'
+import React, { useEffect, useState } from 'react'
+import FullCalendarView from '../../components/ui/FullCalenderView/FullCalenderView'
 import axios from 'axios';
-import TimeGridViewEnd from '../../components/ui/FullCalenderView/TimeGridViewEnd';
+import styles from './month.module.css'
 
-export default function daily() {
+export default function month() {
 
   const [BigGoals, setBigGoals] = useState([]);
   const [smallGoals, setSmallGoals] = useState([]);
@@ -15,6 +14,7 @@ export default function daily() {
       try {
         const response = await axios.get(`/api/BigGoals?userId=${userId}`);
         setBigGoals(response.data);
+        console.log("대목표 조회 넘어온 데이터", response.data);
 
         //소목표 불러오기
         const smallGoalsPromises = response.data.map((goal) =>
@@ -27,6 +27,7 @@ export default function daily() {
         const allSmallGoals = smallGoalsResponses.flatMap(response => response.data);
 
         setSmallGoals(allSmallGoals);
+        console.log("소목표 넘어온 데이터", allSmallGoals);
 
       } catch (error) {
         console.error('일과 쪽 대목표 오류 발생:', error);
@@ -37,17 +38,15 @@ export default function daily() {
   }, []);
 
 
+  console.log("대목표", BigGoals);
+  console.log("소목표", smallGoals);
+
 
   return (
-
-    <div className={styles.container}>
-      <div className={styles.containerWrap}>
-        <TimeGridView BigGoals={BigGoals} smallGoals={smallGoals} />
-      </div>
-      <div className={styles.containerWrap}>
-        <TimeGridViewEnd BigGoals={BigGoals} smallGoals={smallGoals}/>
+    <div >
+      <div >
+        <FullCalendarView BigGoals={BigGoals} smallGoals={smallGoals} />
       </div>
     </div>
-
   )
 }
