@@ -104,6 +104,27 @@ CREATE SEQUENCE task_seq
   INCREMENT BY 1
   NOMAXVALUE
   NOCYCLE;
+-- actualTask_vo 테이블 (실제 수행 일과 테이블)
+CREATE TABLE actualTask_vo (
+  actualTask_number NUMBER PRIMARY KEY,
+  actualTask_title VARCHAR2(255) NOT NULL,
+  actualTask_startDate DATE NOT NULL,
+  actualTask_endDate DATE NOT NULL,
+  user_id VARCHAR2(100) NOT NULL,
+  bigGoal_number NUMBER NOT NULL,
+  smallGoal_number NUMBER NOT NULL,
+  task_number NUMBER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user_vo (user_id) ON DELETE CASCADE,
+  FOREIGN KEY (bigGoal_number) REFERENCES big_Goal (bigGoal_number) ON DELETE CASCADE,
+  FOREIGN KEY (smallGoal_number) REFERENCES small_Goal (smallGoal_number) ON DELETE CASCADE,
+  FOREIGN KEY (task_number) REFERENCES task_vo (task_number) ON DELETE CASCADE
+);
+-- actualTask_number 시퀀스
+CREATE SEQUENCE actualTask_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOMAXVALUE
+  NOCYCLE;
 -- 조회용 sql문
 drop table user_vo;
 drop table task_vo;
@@ -113,4 +134,5 @@ select * from user_vo;
 select * from big_goal;
 select * from small_goal;
 select * from task_vo;
+select * from actualTask_vo;
 commit;
