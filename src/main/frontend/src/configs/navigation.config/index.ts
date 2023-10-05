@@ -18,10 +18,10 @@ const navigationConfig: NavigationTree[] = [
     },
     /** Example purpose only, please remove */
     {
-        key: 'singleMenuItem',
-        path: '/single-menu-view',
-        title: 'Single menu item',
-        translateKey: 'nav.singleMenuItem',
+        key: 'result',
+        path: '/result',
+        title: '결과',
+        translateKey: 'nav.result',
         icon: 'singleMenu',
         type: NAV_ITEM_TYPE_ITEM,
         authority: [],

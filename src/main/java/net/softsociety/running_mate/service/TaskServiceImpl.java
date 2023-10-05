@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.softsociety.running_mate.dao.TaskDAO;
+import net.softsociety.running_mate.dto.ActualTaskDTO;
 import net.softsociety.running_mate.dto.TaskDTO;
 
 @Slf4j
@@ -27,4 +28,14 @@ public class TaskServiceImpl implements TaskService {
     public List<Map<String, Object>> getTasksByStartDate(String userID) {
         return taskDAO.getTasksByStartDate(userID);
     }
+	
+	//실제 과업 저장
+	@Override
+	public void addActualTask(ActualTaskDTO actualTaskDTO) {
+		taskDAO.addActualTask(actualTaskDTO);
+		
+	}
+	
+	
+	
 }

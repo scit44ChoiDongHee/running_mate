@@ -26,67 +26,56 @@ const modalStyle = {
 
 Modal.setAppElement('#root');
 
-export default function InsertDailyGoalModalForCalendar(props) {
+export default function InsertDailyGoalModalForfeedback(props) {
     const todayDate = new Date();
     const dateString = todayDate.toJSON();
     const dateStringSub = dateString.substring(0, dateString.indexOf("T"));
-
+    console.log("InsertDailyGoalModalForfeedback의 프롭스 값",props);
     const userID = "user1";
 
     const [taskVO, setTaskVO] = useState([]);
     const [colourOptions, setColourOptions] = useState([]);
 
+    //존재하는 일과 과업을 불러옴
     useEffect(() => {
-
         const source = axios.CancelToken.source();
-
         async function fetchTasks() {
-
             try {
                 const response = await axios.get(`/api/user/task/getTasks?userID=${userID}`, {
                     cancelToken: source.token
                 });
-
                 setTaskVO(response.data);
-                console.log("일과 과업 넘어온 데이터", response.data);
             } catch (error) {
                 if (!axios.isCancel(error)) {
                     console.error('일과 오류 발생:', error);
                 }
             }
         }
-
         fetchTasks();
-
         return () => {
             source.cancel('Request canceled');
         };
 
     }, []);
 
+    //선택창의 선택지를 저장
     useEffect(() => {
         const options = taskVO.map((task) => ({
             value: task.TASK_TITLE,
-            label: task.TASK_TITLE
+            label: task.TASK_TITLE,
+            BIGGOAL_NUMBER: task.BIGGOAL_NUMBER,
+            SMALLGOAL_NUMBER: task.SMALLGOAL_NUMBER,
+            TASK_NUMBER: task.TASK_NUMBER 
+
         }));
 
         setColourOptions(options);
-        console.log(options);
+        console.log("taskVO 값 확인",taskVO)
     }, [taskVO]);
-    console.log(colourOptions);
+    
 
     // 모달의 열고 닫는 걸 기억
     const [isOpen, setIsOpen] = useState(props.isOpen || false);
-
-    // 폼의 데이터를 저장
-    const [formData, setFormData] = useState({
-        task_title: "",
-        task_startDate: `${dateStringSub}`,
-        task_endDate: `${dateStringSub}`,
-        user_id: 'user1',
-        bigGoal_number: "",
-        smallGoal_number: ""
-    });
 
     // 모달 닫힘
     const closeModal = () => {
@@ -94,29 +83,62 @@ export default function InsertDailyGoalModalForCalendar(props) {
         setIsOpen(false);
     }
 
-    // 값 입력 될 때 폼 데이터로 저장
-    const handleChangetime = (e) => {
-        e.preventDefault();
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
+    // 폼의 데이터를 저장
+    const [formData, setFormData] = useState({
+        actualTask_title: "",
+        actualTask_startDate: `${dateStringSub}`,
+        actualTask_endDate: `${dateStringSub}`,
+        user_id: 'user1',
+        bigGoal_number: "",
+        smallGoal_number: "",
+        TASK_NUMBER: 1
+    });
+    
 
+    // 폼데이터 값 확인
+    useEffect(() => {
+        console.log("formData 값 확인", formData);
+    }, [formData]);
+
+
+    const handleDatePickerChange = (newDate) => {
+        // 새 값을 설정한 뒤에 콜백 함수로 상태 업데이트를 진행합니다.
+        setFormData((prevData) => ({
+            ...prevData,
+            actualTask_startDate: newDate, // bigGoal_startDate로 업데이트
+        }));
+    };
+
+    const handleDatePickerChangeend = (newDate) => {
+        // 새 값을 설정한 뒤에 콜백 함수로 상태 업데이트를 진행합니다.
+        setFormData((prevData) => ({
+            ...prevData,
+            actualTask_endDate: newDate, // bigGoal_startDate로 업데이트
+        }));
+    };
+
+    // 값 입력 저장
     const handleChange = (selectedOption) => {
-        setFormData({ ...formData, task_title: selectedOption.value });
+        setFormData((prevData) => ({ 
+            ...prevData,
+    actualTask_title: selectedOption.value, bigGoal_number: selectedOption.BIGGOAL_NUMBER, smallGoal_number: selectedOption.SMALLGOAL_NUMBER, TASK_NUMBER: selectedOption.TASK_NUMBER}));
       };
 
     // 전송 버튼 누를 때 axios 실행
-    async function handleSubmit(e) {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            console.log("폼 데이터", formData);
-            await axios.post('/api/user/task/addTask', formData);
-
-            props.onClose();
-            closeModal();
-
+            console.log(formData);
+            // Axios를 사용하여 데이터를 전송
+            const response = await axios.post('/api/user/task/addActualTask', {...formData});
+            console.log(response);
+            // props.onSave(formData);
         } catch (error) {
             console.error('오류 발생:', error);
         }
-    }
+        props.onDailyClose();
+        closeModal(); // 모달 닫기
+    };
 
     return (
         <div className={styles.modalContainer}>
@@ -141,9 +163,12 @@ export default function InsertDailyGoalModalForCalendar(props) {
                                 
                                 options={colourOptions}
                                 id='task'
-                                name='task_title'
-                                value={colourOptions.find(option => option.value === formData.task_title)}
-                                onChange={(selectedOption) => handleChange(selectedOption)}
+                                name='actualTask_title'
+                                value={colourOptions.find(option => option.value === formData.actualTask_title)}
+                                onChange={(selectedOption) => {
+                                    console.log("selectedOption  fasdfasdfasdfasfsadfsaf: ",selectedOption);
+                                    handleChange(selectedOption)
+                                }}
                             />
                         </div>
 
@@ -151,10 +176,10 @@ export default function InsertDailyGoalModalForCalendar(props) {
                             <label htmlFor="startDate">시작 시간:</label>
                             <TimeInput placeholder="시작 시간를 고르세요"
                                 id='startDate'
-                                name='task_startDate'
+                                name='actualTask_startDate'
                                 clearable={'true'}
-                                value={formData.task_startDate}
-                                onChange={handleChangetime}
+                                value={formData.actualTask_startDate}
+                                onChange={handleDatePickerChange}
                             />
                         </div>
 
@@ -162,10 +187,10 @@ export default function InsertDailyGoalModalForCalendar(props) {
                             <label htmlFor='endDate'>종료 시간:</label>
                             <TimeInput placeholder="종료 시간를 고르세요"
                                 id='endDate'
-                                name='task_endDate'
+                                name='actualTask_endDate'
                                 clearable={'true'}
-                                value={formData.task_endDate}
-                                onChange={handleChangetime}
+                                value={formData.actualTask_endDate}
+                                onChange={handleDatePickerChangeend}
                             />
                         </div>
 

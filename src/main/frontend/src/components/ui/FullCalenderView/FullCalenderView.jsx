@@ -5,8 +5,8 @@ import FullCalendar from '@fullcalendar/react';
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from 'axios';
 import listPlugin from '@fullcalendar/list';
-import InsertDailyGoalModalForCalendar from '../FullCalenderView/InsertDailyGoalModalForCalendar'; // 경로에 따라서 수정이 필요할 수 있습니다.
 import './MyCalendar.css'
+import InsertDailyGoalModalForfeedback from './InsertDailyGoalModalForfeedback';
 
 export default function FullCalendarView(props) {
 
@@ -64,7 +64,6 @@ export default function FullCalendarView(props) {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
         initialView={'dayGridMonth'}
-        themeSystem={'Litera'}
         headerToolbar={
           {
             start: 'today',
@@ -88,10 +87,9 @@ export default function FullCalendarView(props) {
         }}
       />
       <div>
-        
         {
           isOpen && (
-            <InsertDailyGoalModalForCalendar isOpen={isOpen} onDailyClose={onDailyClose} BigGoals={BigGoals} smallGoals={smallGoals} />)
+            <InsertDailyGoalModalForfeedback isOpen={isOpen} onDailyClose={onDailyClose} BigGoals={BigGoals} smallGoals={smallGoals} />)
         }
       </div>
     </div>

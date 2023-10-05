@@ -23,6 +23,13 @@
 		user_id = #{userID} AND TO_CHAR(task_startDate,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')
 </select>
 
+<!-- 실제 과업 등록 --> 
+<insert id="addActualTask" parameterType="net.softsociety.running_mate.dto.ActualTaskDTO">
+  INSERT INTO actualTask_vo
+    (actualTask_number, actualTask_title, actualTask_startDate, actualTask_endDate, user_id, bigGoal_number, smallGoal_number, task_number)
+  VALUES
+    (actualTask_seq.NEXTVAL, #{actualTask_title}, TO_DATE(#{actualTask_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{actualTask_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number}, #{TASK_NUMBER})
+</insert>
 
 
 </mapper>

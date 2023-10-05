@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.topbox{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.cardwarp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.Card{
+    height: 250px;
+    flex: 1 1 200px;
+    font-size: 20px;
+
+}
+
+.p {
+
+    font-size: 50px;
+}

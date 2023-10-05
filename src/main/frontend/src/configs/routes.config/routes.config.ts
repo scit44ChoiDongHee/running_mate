@@ -12,9 +12,9 @@ export let protectedRoutes = [
     },
     /** Example purpose only, please remove */
     {
-        key: 'singleMenuItem',
-        path: '/single-menu-view',
-        component: lazy(() => import('@/views/demo/SingleMenuView')),
+        key: 'result',
+        path: '/result',
+        component: lazy(() => import('@/views/demo/result')),
         authority: [],
     },
     {
