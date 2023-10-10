@@ -13,7 +13,7 @@ const modalStyle = {
     },
     content: {
         width: '400px',
-        height: '400px',
+        height: '450px',
         margin: 'auto',
         display: 'flex',
         flexDirection: 'column',
@@ -120,7 +120,7 @@ export default function InsertDailyGoalModal(props) {
                     style={modalStyle}
                 >
                     <div className={styles.titleDiv}>
-                        <h2 className={styles.title}>일과 피드백을 입력하세요</h2>
+                        <h2 className={styles.title}>일과를 등록하세요</h2>
                     </div>
 
                     {/* 모달 내용 */}

@@ -23,6 +23,16 @@
 		user_id = #{userID} AND TO_CHAR(task_startDate,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')
 </select>
 
+
+<select id="getTasksByStartDateFormonth" parameterType="String" resultType="java.util.Map">
+	SELECT 
+		task_number, task_title, task_startDate, task_endDate, bigGoal_number, smallGoal_number
+	FROM 
+		task_vo
+	WHERE
+		user_id = #{userID}
+</select>
+
 <!-- 실제 과업 등록 --> 
 <insert id="addActualTask" parameterType="net.softsociety.running_mate.dto.ActualTaskDTO">
   INSERT INTO actualTask_vo

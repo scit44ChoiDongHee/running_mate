@@ -3,8 +3,8 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import { Button, Input } from '@/components/ui';
 import TimeInput from '@/components/ui/TimeInput'
-import styles from './InsertDailyGoalModalForCalendar.module.css'
 import Select from '@/components/ui/Select'
+import styles from './InsertDailyGoalModalForCalendar.module.css';
 
 const modalStyle = {
     overlay: {

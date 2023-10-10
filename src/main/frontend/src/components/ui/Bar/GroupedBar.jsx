@@ -44,6 +44,11 @@ const GroupedBar = () => {
                 xaxis: {
                     categories: ["SQL", "Java", "Spring"],
                 },
+                tooltip: {
+                    y: {
+                        formatter: (val) => `${val} 시간`,
+                    },
+                },
             }}
             series={data}
             height={300}

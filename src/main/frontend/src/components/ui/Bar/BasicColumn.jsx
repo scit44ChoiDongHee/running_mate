@@ -47,7 +47,7 @@ const BasicColumn = () => {
                 },
                 tooltip: {
                     y: {
-                        formatter: (val) => `$${val} thousands`,
+                        formatter: (val) => `${val} 개`,
                     },
                 },
             }}

@@ -68,6 +68,13 @@ public class TaskController {
         return taskService.getTasksByStartDate(userID);
     }
     
+    // 오늘 날짜로 일정 조회
+    @GetMapping("/getTasksFormonth")
+    public List<Map<String, Object>> getTasksByStartDateFormonth(@RequestParam String userID) {
+    	log.debug("조회 파람 값 확인 {}",userID);
+        return taskService.getTasksByStartDateFormonth(userID);
+    }
+    
     //실제 일정 과업 저장
     @PostMapping("/addActualTask")
     public void addActualTask(@RequestBody ActualTaskDTO actualTaskDTO) {

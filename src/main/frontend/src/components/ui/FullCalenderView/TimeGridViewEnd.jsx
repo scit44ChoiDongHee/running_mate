@@ -18,7 +18,7 @@ export default function TimeGridViewEnd(props) {
     useEffect(() => {
         async function fetchGoals() {
             try {
-                const response = await axios.get(`/api/user/task/getTasks?userID=${userID}`);
+                const response = await axios.get(`/api/user/task/getTasksFormonth?userID=${userID}`);
                 setDailyInfo(response.data);
             } catch (error) {
                 console.error('일과 오류 발생:', error);
@@ -56,7 +56,7 @@ export default function TimeGridViewEnd(props) {
         <div>
 
             <div className="my-calendar">
-                <h2 className="calendarname">실제</h2>
+                <h2 className="calendarname">실제 일과</h2>
                 <FullCalendar
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin]}
                     initialView="timeGridDay"

@@ -22,7 +22,7 @@ export default function FullCalendarView(props) {
   useEffect(() => {
     async function fetchTasks() {
       try {
-        const response = await axios.get(`/api/user/task/getTasks?userID=${userID}`);
+        const response = await axios.get(`/api/user/task/getTasksFormonth?userID=${userID}`);
         setDailyInfo(response.data);
         console.log("달력 쪽 조회 넘어온 데이터", response.data);
       } catch (error) {

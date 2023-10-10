@@ -13,4 +13,6 @@ public interface TaskService {
 	List<Map<String, Object>> getTasksByStartDate(String userID);
 	//실제 과업 저장
 	void addActualTask(ActualTaskDTO actualTaskDTO);
+	//달력에 불러오는 일정
+	List<Map<String, Object>> getTasksByStartDateFormonth(String userID);
 }

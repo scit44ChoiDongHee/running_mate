@@ -16,7 +16,17 @@
     flex-wrap: wrap;
     margin-top: 20px;
 }
+/* .headerClass{
+    font-size: 30px;
+}
 
+.h4{
+    font-size: 30px;
+}
+
+.card-header{
+    font-size: 100px;
+} */
 .cardwarp{
     display: flex;
     flex-direction: row;
@@ -27,10 +37,19 @@
 .Card{
     width: 350px;
     height: 250px;
-    flex: 1 1 0;
+    flex: 1 1 200px;
     font-size: 20px;
     text-align: center;
 
+}
+
+.Card1{
+    width: 350px;
+    height: 250px;
+    flex: 1 1 200px;
+    
+    text-align: center;
+    font-size: 100px;
 }
 
 .p {

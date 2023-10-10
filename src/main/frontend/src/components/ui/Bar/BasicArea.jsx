@@ -6,7 +6,7 @@ const BasicArea = () => {
         {
             name: '총 시간',
             data: [
-                20, 40, 60,
+                20, 40, 50, 60,
             ],
         },
     ]
@@ -39,11 +39,11 @@ const BasicArea = () => {
                     width: 3,
                 },
                 labels: [
+                    
                     '13 Nov 2023',
                     '14 Nov 2023',
+                    '18 Nov 2023',
                     '15 Dec 2023',
-                   
-                    
                 ],
                 xaxis: {
                     type: 'datetime',
@@ -53,6 +53,11 @@ const BasicArea = () => {
                 },
                 legend: {
                     horizontalAlign: 'left',
+                },
+                tooltip: {
+                    y: {
+                        formatter: (val) => `${val} 시간`,
+                    },
                 },
             }}
             type="area"

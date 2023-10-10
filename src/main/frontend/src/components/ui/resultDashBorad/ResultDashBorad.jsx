@@ -10,7 +10,7 @@ export default function ResultDashBorad() {
   return (
     <div className={styles.container}>
       <div className={styles.topbox}>
-        <h1>대목표 : Learn SQL</h1>
+        <h1>대목표 : Learn Cording</h1>
         <br />
         <hr />
         <br />
@@ -19,7 +19,7 @@ export default function ResultDashBorad() {
             header="대목표 산하 소목표 이름"
             headerBorder={false}
             className={styles.Card}
-            headerClass="text-xl"
+            headerClass={styles.headerClass}
           >
             <p>Study SQL Basics</p>
             <p>Study Java Basics</p>
@@ -51,9 +51,9 @@ export default function ResultDashBorad() {
           <Card
             header="총 투자 시간"
             headerBorder={false}
-            className={styles.Card}
+            className={styles.Card1}
           >
-            <p>850H</p>
+            <p>120H</p>
           </Card>
         </div>
 

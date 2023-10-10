@@ -30,6 +30,11 @@ const BasicBar = () => {
                         
                     ],
                 },
+                tooltip: {
+                    y: {
+                        formatter: (val) => `${val} 시간`,
+                    },
+                },
             }}
             series={data}
             type="bar"
