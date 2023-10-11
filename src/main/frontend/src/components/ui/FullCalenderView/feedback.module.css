@@ -6,10 +6,11 @@
 }
 .title {
     
-    font-size: 24px;
+    font-size: 25px;
 }
 
 .titleDiv {
+    
    
 }
 
@@ -17,12 +18,13 @@
     display: flex; /* Flex 컨테이너로 설정하여 수평 가운데 정렬합니다. */
     justify-content: center; /* 수평 가운데 정렬 */
     flex-direction: column;
-    
+    width: 300px;
     height: 100%;
 }
 
 .input {
-    margin: 10px;
+    margin-top: 15px;
+    width: 300px
 }
 
 .buttonBox {
@@ -41,4 +43,10 @@
 .addButton {
     margin-top: 60px;
     margin-bottom: 20px;
+}
+
+.select{
+    
+    margin-top: 15px;
+
 }

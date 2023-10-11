@@ -16,7 +16,7 @@ public class ActualTaskDTO {
     private String user_id;
     private int bigGoal_number;
     private int smallGoal_number;
-    private int TASK_NUMBER; // 이 필드를 추가
+    private int task_number; // 이 필드를 추가
 
 
 }

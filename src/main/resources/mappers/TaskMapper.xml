@@ -38,7 +38,7 @@
   INSERT INTO actualTask_vo
     (actualTask_number, actualTask_title, actualTask_startDate, actualTask_endDate, user_id, bigGoal_number, smallGoal_number, task_number)
   VALUES
-    (actualTask_seq.NEXTVAL, #{actualTask_title}, TO_DATE(#{actualTask_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{actualTask_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number}, #{TASK_NUMBER})
+    (actualTask_seq.NEXTVAL, #{actualTask_title}, TO_DATE(#{actualTask_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{actualTask_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number}, #{task_number})
 </insert>
 
 

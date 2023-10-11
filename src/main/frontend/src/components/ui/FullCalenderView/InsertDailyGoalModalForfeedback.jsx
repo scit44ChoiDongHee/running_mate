@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, Input } from '@/components/ui';
 import TimeInput from '@/components/ui/TimeInput'
 import Select from '@/components/ui/Select'
-import styles from './InsertDailyGoalModalForCalendar.module.css';
+import styles from './feedback.module.css';
 
 const modalStyle = {
     overlay: {
@@ -91,7 +91,7 @@ export default function InsertDailyGoalModalForfeedback(props) {
         user_id: 'user1',
         bigGoal_number: "",
         smallGoal_number: "",
-        TASK_NUMBER: 1
+        task_number: 1
     });
     
 
@@ -121,7 +121,7 @@ export default function InsertDailyGoalModalForfeedback(props) {
     const handleChange = (selectedOption) => {
         setFormData((prevData) => ({ 
             ...prevData,
-    actualTask_title: selectedOption.value, bigGoal_number: selectedOption.BIGGOAL_NUMBER, smallGoal_number: selectedOption.SMALLGOAL_NUMBER, TASK_NUMBER: selectedOption.TASK_NUMBER}));
+    actualTask_title: selectedOption.value, bigGoal_number: selectedOption.BIGGOAL_NUMBER, smallGoal_number: selectedOption.SMALLGOAL_NUMBER, task_number: selectedOption.TASK_NUMBER}));
       };
 
     // 전송 버튼 누를 때 axios 실행
@@ -157,7 +157,7 @@ export default function InsertDailyGoalModalForfeedback(props) {
                     <form className={styles.formDiv} onSubmit={handleSubmit}>
 
                         {/* "일과 목표 이름" 입력 필드 */}
-                        <div>
+                        <div className={styles.select}>
                             <label htmlFor="task">일과 선택 :</label>
                             <Select
                                 
