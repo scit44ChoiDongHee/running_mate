@@ -71,9 +71,17 @@ public class TaskController {
     // 오늘 날짜로 일정 조회
     @GetMapping("/getTasksFormonth")
     public List<Map<String, Object>> getTasksByStartDateFormonth(@RequestParam String userID) {
-    	log.debug("조회 파람 값 확인 {}",userID);
+    	log.debug("계획 값 확인 {}",userID);
         return taskService.getTasksByStartDateFormonth(userID);
     }
+    
+ // 오늘 날짜로 일정 조회
+    @GetMapping("/ActualTask")
+    public List<Map<String, Object>> getActualTask(@RequestParam String userID) {
+    	log.debug("실제 피드백 불러오기 {}",userID);
+        return taskService.getActualTask(userID);
+    }
+    
     
     //실제 일정 과업 저장 피드백
     @PostMapping("/addActualTask")

@@ -50,3 +50,20 @@
     margin-top: 15px;
 
 }
+
+.Checkbox1{
+    
+    margin-top: 15px;
+    
+}
+
+.Checkbox2{
+    
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.Checkboxcontainer {
+    display: flex;
+    justify-content: flex-start; /* 아이템을 우측으로 정렬 */
+  }

@@ -15,11 +15,13 @@ export default function TimeGridViewEnd(props) {
     const [dailyInfo, setDailyInfo] = useState([]);
     const userID = 'user1';
     console.log("TimeGridViewEnd의 프롭스 값",props);
+    
     useEffect(() => {
         async function fetchGoals() {
             try {
-                const response = await axios.get(`/api/user/task/getTasksFormonth?userID=${userID}`);
+                const response = await axios.get(`/api/user/task/ActualTask?userID=${userID}`);
                 setDailyInfo(response.data);
+                console.log('불러오기 요청 보냄', response.data);
             } catch (error) {
                 console.error('일과 오류 발생:', error);
             }
@@ -40,9 +42,9 @@ export default function TimeGridViewEnd(props) {
 
         const color = getRandomColor();
         return {
-            title: list.TASK_TITLE,
-            start: list.TASK_STARTDATE,
-            end: list.TASK_ENDDATE,
+            title: list.ACTUALTASK_TITLE,
+            start: list.ACTUALTASK_STARTDATE,
+            end: list.ACTUALTASK_ENDDATE,
             color: color
         };
     });

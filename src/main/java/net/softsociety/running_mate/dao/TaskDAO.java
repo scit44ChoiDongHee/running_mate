@@ -17,6 +17,7 @@ public interface TaskDAO {
 	// 실제 과업 저장
 	void addActualTask(ActualTaskDTO actualTaskDTO);
 	
-	
 	List<Map<String, Object>> getTasksByStartDateFormonth(String userID);
+	//실제
+	List<Map<String, Object>> getActualTask(String userID);
 }

@@ -40,6 +40,11 @@ public class TaskServiceImpl implements TaskService {
 	public List<Map<String, Object>> getTasksByStartDateFormonth(String userID) {
 		return taskDAO.getTasksByStartDateFormonth(userID);
 	}
+	//실제
+	@Override
+	public List<Map<String, Object>> getActualTask(String userID) {
+		return taskDAO.getActualTask(userID);
+	}
 	
 	
 	

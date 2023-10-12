@@ -5,6 +5,8 @@ import { Button, Input } from '@/components/ui';
 import TimeInput from '@/components/ui/TimeInput'
 import Select from '@/components/ui/Select'
 import styles from './feedback.module.css';
+import Checkbox from '@/components/ui/Checkbox'
+import Radio from '@/components/ui/Radio'
 
 const modalStyle = {
     overlay: {
@@ -194,6 +196,10 @@ export default function InsertDailyGoalModalForfeedback(props) {
                             />
                         </div>
 
+                        <div className={styles.Checkboxcontainer}>
+                            <Radio name="simpleRadioExample" className={styles.Checkbox1}>완수</Radio>
+                            <Radio name="simpleRadioExample" className={styles.Checkbox2}>미완수</Radio>
+                        </div>        
 
                         <div className={styles.buttonBox}>
                             <Button variant='solid' type='submit' className={styles.button}>
@@ -202,6 +208,7 @@ export default function InsertDailyGoalModalForfeedback(props) {
                             <Button variant='solid' onClick={closeModal} className={styles.button}>
                                 닫기 </Button>
                         </div>
+
                     </form>
                 </Modal>
             </div>

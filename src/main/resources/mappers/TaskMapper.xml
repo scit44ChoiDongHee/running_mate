@@ -41,5 +41,14 @@
     (actualTask_seq.NEXTVAL, #{actualTask_title}, TO_DATE(#{actualTask_startDate}, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(#{actualTask_endDate}, 'YYYY-MM-DD HH24:MI:SS'), #{user_id}, #{bigGoal_number}, #{smallGoal_number}, #{task_number})
 </insert>
 
+<select id="getActualTask" parameterType="String" resultType="java.util.Map">
+	SELECT 
+		actualTask_number, actualTask_title, actualTask_startDate, actualTask_endDate, bigGoal_number, smallGoal_number
+	FROM 
+		actualTask_vo
+	WHERE
+		user_id = #{userID}
+</select>
+
 
 </mapper>
